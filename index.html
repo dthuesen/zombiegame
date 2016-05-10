@@ -6,19 +6,29 @@
         <link href="styles/main.css" type="text/css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nosifer&effect=static|neon" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=Averia+Gruesa+Libre' rel='stylesheet' type='text/css'>
-        <script type="text/javascript" script-name="patrick-hand" src="http://use.edgefonts.net/patrick-hand.js"></script>
-        <script type="text/javascript" script-name="jolly-lodger" src="http://use.edgefonts.net/jolly-lodger.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Jolly+Lodger&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     </head>
     <body id="bodyImage" onload="introImage()">
+      <div id="dashboard" class="dashboard" style="display:none;">
+        <p id="health" class="gauge">Health: 0</p>
+        <p id="stealth" class="gauge">Stealth: 0</p>
+        <p id="strength" class="gauge">Strength: 0</p>
+        <p id="energy" class="gauge-energy">Energy: 0</p>
+      </div>
       <div>
         <p id="attention1"></p>
         <p id="attention2"></p>
         <h1 id="headline">Die Zombie-Jagd für Anfänger</h1>
         <p id="textContent">Dieses kleine Tetxt-Adventure führt dich an unheimliche Orte und auf jeden Fall in gefähliche Situationen.<br><br> Bist du stark, schlau oder oder listig genug, um deine eigene Haut zu retten? Was musst du tun, um zu überleben. Deine Entscheidungen sind deine Lebensversicherung.</p>
-        <select id="pullDown" style="display:none;"></select>
-        <input placeholder="Hier bitte eingeben" id="inputField" style="display:none;">
+        <select id="pullDown" style="display:none;" ></select>
+        <input placeholder="Hier bitte eingeben" id="inputField" style="display:none;" required /><br><br>
         <button id="goOnButton">Los geht's</button>
         <button id="randomButton" style="display:none;">Zufälliger Name</button>
+        <button id="reloadButton" style="display:none;" onclick="location.reload();">Reload</button>
+        <!--<input type="button" value="RELOAD" onclick="location.reload();" />-->
+      </div>
+      <div id="messageDiv" style="display:none;">
+        <p class="position" id="message"></p>
       </div>
 
       <script src="scripts/main.js" type="text/javascript"></script>
