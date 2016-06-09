@@ -7,6 +7,8 @@ var character = {
     characterClass: "default"
 };
 
+var aud = new Audio('music/music_darkshadow.mp3');
+
 function goingToDie() {
   'use strict';
   
@@ -26,6 +28,12 @@ function goingToDie() {
   paragraphText.textContent = characterName + ", da ist nichts mehr zu machen, du hast dein Leben ausgehaucht. Dein Energy-Level ist leider viel zu gering: " + character.energy + " Das reicht leider nicht mehr zum Überleben. Du bist definitif tot.";
   
   document.getElementById("message").innerHTML = character.characterClass;
+  
+  ///  AUDIO START ///
+  aud.pause();
+  aud = new Audio('music/zombie_05_long.mp3');
+  aud.play();
+  ///  AUDIO END  ///
 }
 
 function getEnergyValue() {
@@ -93,6 +101,42 @@ var characterAutomaticNames = [
   "Olga Trafalgar",
   "Astrid Kowalski",
   "Zitronen Jette",
+  "James Bond",
+  "Liselotte Pulver",
+  "Inge Meisel",
+  "Heinz Rühmann",
+  "Minni Maus",
+  "Winni Puh",
+  "Benjamin Blümchen",
+  "Bibi Blocksberg",
+  "Hans Rosenthal",
+  "Heidi Kabel",
+  "Dreikäsehoch",
+  "Irma Ladouce",
+  "Schneewittchen",
+  "Klaas Klever",
+  "Jack London",
+  "Jack Daniels",
+  "Oma Pütsch",
+  "Tinkerbell",
+  "Kalle Blomquist",
+  "Linus Torvalds",
+  "Karl der Große",
+  "Dschingis Khan",
+  "Jeanne D'Arc",
+  "Maria Stuart",
+  "Rembrandt van Rijn",
+  "Frank Sinatra",
+  "Mutter Teresa",
+  "Marilyn Monroe",
+  "Anne Frank",
+  "Bob Marley",
+  "John Lennon",
+  "Charlie Chaplin",
+  "Astrid Lindgren",
+  "Marie Curie",
+  "Hans Albers",
+  "Hein Mück",
   "Margarete Schreinemakers"
 ];
 var characterOptions = [
@@ -115,19 +159,39 @@ var situationWeapons = [
   "Tot stellen",
   "Weg schleichen",
 ];
+var situationWeapons1 = [
+  "Was tust du? Bitte wählen",
+  "Hinter der nächsten Ecke verstecken",
+  "Die luft anhalten und bis 10 zählen.",
+  "Irgendwo gegen treten und ganz laut 'verdamt' schreien.",
+  "In einen Umzugskarton klettern und hoffen.",
+  "Laufen, bis keine Zombies mehr zu sehen sind.",
+  "Einen LKW kuzschließen, der da gerade rumoxidiert.",
+];
 var situationWeapons2 = [
   "Was tust du? Bitte wählen",
+  "Einfach weiter spazieren. Ich bin stärker für die Zombies.",
+  "In einem altem Baustellen-WC verstecken, das hier links steht.",
+  "Brüllen, wie ein Löwe und die Zombies verscheuchen.",
+  "Davon joggen, das reicht an Geschwindigkeit und spart Kräfte.",
+  "Dem Kind da drüben, den Tretroller wegnehmen und aus dem Staub machen.",
+  "Runter zur U-Bahn laufen und auf einen Zug hoffen.",
+];
+var situationWeapons3 = [
+  "Was tust du? Bitte wählen",
   "Schnell einen einsameren Weg suchen.",
-  "Gegen die Zombies kämpfen, wie ein Held",
-  "Mit der Gummiente vom Boden erschlagen.",
-  "In den Hals beißen, bis der Zombie tot ist.",
-  "Tot stellen",
-  "Weg schleichen",
+  "Gegen die Zombies kämpfen, wie ein Held aus Grims Märchen",
+  "Ein schrilles Lied singen.",
+  "Die Zombies versuchen zu hypnotisieren.",
+  "Ein Auto klauen, das Fahrerlos am Fahrbanrand steht.",
+  "In den nahe gelegenen Fluss springen und wegschwimmen.",
 ];
 var selectedSitationWeapon = "";
 var randomScenarioIndex = 0;
 var scenarioStart = "";
 var outcome = 0;
+
+
 
 var randomNumber = function randomNumber(range) {
   'use strict';
@@ -139,6 +203,12 @@ var randomNumber = function randomNumber(range) {
 
 function introImage() {
   'use strict';
+  
+  ///  AUDIO START ///
+  //aud = new Audio('music/music_darkshadow.mp3');
+  aud.play();
+  ///  AUDIO END  ///
+  
   var messageParagraph = document.getElementById("messageDiv");
   messageParagraph.style.display = "none";
   //document.getElementById("message").innerHTML="bin jetzt in introImage";
@@ -179,6 +249,12 @@ function openingText() {
 function scenarioText() {
   'use strict';
   // document.getElementById("message").innerHTML="bin jetzt in scenarioText";
+  
+  ///  AUDIO START ///
+  aud.pause();
+  aud = new Audio('music/zombie_01.mp3');
+  aud.play();
+  ///  AUDIO END  ///
 
   var background = document.getElementById('bodyImage');
   randomScenarioIndex = randomNumber(beginningScenarios.length - 1);
@@ -249,6 +325,13 @@ function characterNameText() {
 
 function randomCharacteName() {
   'use strict';
+  
+  ///  AUDIO START ///
+  aud.pause();
+  aud = new Audio('music/zombie_02.mp3');
+  aud.play();
+  ///  AUDIO END  ///
+  
   var headline = document.getElementById("headline");
   var paragraphText = document.getElementById("textContent");
   var randomRange = (characterAutomaticNames.length - 1);
@@ -287,7 +370,7 @@ function realCharacterName() {
   input = document.getElementById("inputField"); // <--- INPUT FIELD
   input.style.display = "none"; // <-------------- INPUT VISIBLE
 
-  headline.textContent = "Hi " + characterName + ", gut dass dir dein Name noch bekannt ist.";
+  headline.textContent = "Hi, " + characterName + ", gut dass dir dein Name noch bekannt ist.";
   paragraphText.innerHTML = "Ich weiß jetzt also, dass du " + characterName + " heißt. Für den Verlauf der Geschichte ist es aber wichtig, dass du dir darüber im Klaren bist, dass du sterben kannst. Willst du weiter machen?";
   
   var randomButton = document.getElementById("randomButton");
@@ -306,7 +389,7 @@ function needCharacterText() {
   'use strict';
 
   var messageParagraph = document.getElementById("messageDiv");
-  messageParagraph.style.display = "";
+  messageParagraph.style.display = "none";
   document.getElementById("message").innerHTML="bin jetzt in needCharacterText";
 
   var headline = document.getElementById("headline");
@@ -357,7 +440,7 @@ function checkAndSetCharacter() {
   paragraphText.innerHTML = "Du bist also " + character.characterClass + ". Es ist immer gut zu wissen, mit wem man es zu tun hat. Vielleicht hilft es dir wirklich weiter, dass du in deinem letzten Leben " + character.characterClass + " warst. <br><br> Was mich anbetrifft, sollte ich jetzt eine gewisse Ahnung davon haben, was du in der Lage bist zu leisten. Mein Vertrauen ist mit dir. Vermutlich war dieses Vorgeplenkel allerdings auch das letzte, was wirklich gut lief. Die bröckelden Gestalten sind und lauern überall.";
   
   var messageParagraph = document.getElementById("messageDiv");
-  messageParagraph.style.display = "";
+  messageParagraph.style.display = "none";
   document.getElementById("message").innerHTML="bin jetzt in checkAndSetCharacter";
   
   var randomButton = document.getElementById("randomButton");
@@ -465,6 +548,12 @@ function checkAndSetCharacter() {
 function declareCharacterClass() {
   'use strict';
   
+  ///  AUDIO START ///
+  aud.pause();
+  aud = new Audio('music/zombie_03.mp3');
+  aud.play();
+  ///  AUDIO END  ///
+  
   var headline = document.getElementById("headline");
   var paragraphText = document.getElementById("textContent");
   
@@ -475,7 +564,7 @@ function declareCharacterClass() {
   paragraphText.innerHTML = "Es bleibt spannend.";
   
   var messageParagraph = document.getElementById("messageDiv");
-  messageParagraph.style.display = "";
+  messageParagraph.style.display = "none";
   document.getElementById("message").innerHTML="bin jetzt in declareCharacterClass";
   
   if (randomScenarioIndex === 0) {
@@ -863,13 +952,6 @@ function storyAlley() {
   var randomButton = document.getElementById("randomButton");//<- get ID randomButton
   randomButton.style.display = "none"; //<----------------------- RANDOM BUTTON INVISIBLE
   
-  // if (document.getElementById('goOnButton')) {
-  //   var elem = document.getElementById("goOnButton");
-  //   elem.parentNode.removeChild(elem);
-  // } else {
-  //   alert('Fehler: Kann kein Element mit der ID "goOnButton" finden');
-  // }
-  
   // 0 = Krankenhaus, ungewöhnlich still, zur Tür schleichen
   headline.textContent = "Mach dich auf etwas gefasst, " + characterName + ", deine Stunde scheint geschlagen zu haben." ;
   paragraphText.innerHTML = "Die Kälte steckt dir immer noch in den Knochen. Die Gasse, in der du aufgewacht bist, mündet an einer breiteren Straße. Allerdings ist von dem ursprünglichen Zustand dieser Straße nicht mehr viel übrig. Alles ist durcheinander. Es sieht aus, wie nach einem Krieg. Du kann in einiger Entfernung Gestalten ausmachen, die, wie es scheint dich bemerkt haben. Sie kommen lansam auf dich zu. Hinter einem Auto, das viel dichter in deiner Nähe steht, kommt plötzlich auch eine Gestalt hervor. Du kannst ein Röchelen hören, und andere Geräusche, die ein Mensch eigentlich nicht macht, wenn er sich bewegt. Die Gestalt ist jetzt so nahe, dass du sehen, kannst, was da so merkwürdig ist. Du fällst fast hinten über. Dich ergreift Panik als du vor etwas siehst, das nur noch menschenähnlich aussieht aber kein Mensch ist. Die Haut in Fetzen, ein Arm hängt nur noch an einem Strang. Du bist dir sicher, dieses Wesen kennst du. Dieses Wesen darf es gar nicht geben. Es ist wie aus den Horror B-Movies, die du so gerne siehst. es ist ein <b>Z O M B I E !!!</b> <br/><br/> Ganz klar, du must etwas tun, dich in Sicherheit bring, das Wesen aufhalten, den Zombie töten. Wie entscheidest du dich? Wähle mit Bedacht aber zögere nicht zu lange.";
@@ -1102,7 +1184,7 @@ function checkCharacter() {
   'use strict';
   
   var messageParagraph = document.getElementById("messageDiv");
-  messageParagraph.style.display = "";
+  messageParagraph.style.display = "none";
   document.getElementById("message").innerHTML="bin jetzt in checkCharacter";
   
   var headline = document.getElementById("headline");//<--------- get ID headline
@@ -1142,8 +1224,14 @@ function checkCharacter() {
 function checkCharacter2() {
   'use strict';
   
+  ///  AUDIO START ///
+  aud.pause();
+  aud = new Audio('music/zombie_04.mp3');
+  aud.play();
+  ///  AUDIO END  ///
+  
   var messageParagraph = document.getElementById("messageDiv");
-  messageParagraph.style.display = "";
+  messageParagraph.style.display = "none";
   document.getElementById("message").innerHTML="bin jetzt in checkCharacter2";
   
   var headline = document.getElementById("headline");//<--------- get ID headline
@@ -1159,9 +1247,9 @@ function checkCharacter2() {
   
   var buttonGoOn = document.getElementById("goOnButton"); //<---- get ID goOnButton
 
-  headline.textContent = "Bist du noch am Leben?." ;
+  headline.textContent = "Du kommst voran. Wie fühlst du dich?" ;
   if (character.energy <= 1.4) {
-    paragraphText.innerHTML = "Ich glaube kaum. Deine Lebensenergie beträgt jetzt nur noch: " + character.energy + " Du hast hast jetzt die Wahl, du kanns wählen ob du sehen möchtest, ob du wirklich gestorben bist oder du startest die Story gleich von vorn mit dem RELOAD Schalter";
+    paragraphText.innerHTML = "Ich kann es dir sagen, deine Lebensenergie beträgt: " + character.energy + " Punkte. Du kannst jetzt wählen, ob du sehen möchtest, ob du wirklich gestorben bist oder du startest die Story gleich von vorn mit dem RELOAD Schalter";
     buttonGoOn.style.display = ""; //<----------------------------- GO ON BUTTON VISIBLE
     buttonGoOn.textContent = "Ich bin stark, ich will's sehen."; // <-- BTN
     buttonGoOn.addEventListener('click', goingToDie);
@@ -1171,10 +1259,92 @@ function checkCharacter2() {
     buttonGoOn.textContent = "Das wird schon, weiter..."; // <-- BTN
     buttonGoOn.addEventListener('click', storyPart3);
   } else {
-    paragraphText.innerHTML = "Ja, bist du! Und das sogar noch mit guter Lebensenergie. Der Level deiner Lebensenergie ist nicht gerade gering: " + character.energy;
+    paragraphText.innerHTML = "Du musst dich einfach gut fühlen, der Level deiner Lebensenergie ist doch bestens: " + character.energy + " Punkte. Bravo, weiter so!";
     buttonGoOn.style.display = ""; //<----------------------------- GO ON BUTTON VISIBLE
-    buttonGoOn.textContent = "Dann mit Elan Weiter!"; // <-- BTN
+    buttonGoOn.textContent = "Genau, weiter!"; // <-- BTN
     buttonGoOn.addEventListener('click', storyPart3);
+  }
+};
+function checkCharacter3() {
+  'use strict';
+  
+  ///  AUDIO START ///
+  aud.pause();
+  aud = new Audio('music/zombie_05_long.mp3');
+  aud.play();
+  ///  AUDIO END  ///
+  
+  var messageParagraph = document.getElementById("messageDiv");
+  messageParagraph.style.display = "none";
+  document.getElementById("message").innerHTML="bin jetzt in checkCharacter3";
+  
+  var headline = document.getElementById("headline");//<--------- get ID headline
+  var paragraphText = document.getElementById("textContent");//<- get ID textContent
+  var randomButton = document.getElementById("randomButton");//<- get ID randomButton
+  randomButton.style.display = "none"; //<----------------------- RANDOM BUTTON INVISIBLE
+  var select = document.getElementById("pullDown"); //<---------- get ID pullDown
+  select.style.display = "none"; //<----------------------------- PULL DOWN INVISIBLE
+  
+  getEnergyValue();/////////<------------------------------------ CALL BLOCK FOR
+  getDashboardValues();////<------------------------------------- CHECK & UPDATE VALUES
+  checkLive();////////////<-------------------------------------- MUST STAY TOGETHER
+  
+  var buttonGoOn = document.getElementById("goOnButton"); //<---- get ID goOnButton
+
+  headline.textContent = "Du kommst voran. Wie fühlst du dich?" ;
+  if (character.energy <= 1.4) {
+    paragraphText.innerHTML = "Ich kann es dir sagen, deine Lebensenergie beträgt: " + character.energy + " Punkte. Du kannst jetzt wählen, ob du sehen möchtest, ob du wirklich gestorben bist oder du startest die Story gleich von vorn mit dem RELOAD Schalter";
+    buttonGoOn.style.display = ""; //<----------------------------- GO ON BUTTON VISIBLE
+    buttonGoOn.textContent = "Ich bin stark, ich will's sehen."; // <-- BTN
+    buttonGoOn.addEventListener('click', goingToDie);
+  } else if (character.energy > 1.4 && character.energy < 4){
+    paragraphText.innerHTML = "Scheint so. Da bist du dem Tod wohl gerade so eben noch mal von der Schippe gesprungen. Deine Lebensenergie beträgt jetzt gerade mal: " + character.energy;
+    buttonGoOn.style.display = ""; //<----------------------------- GO ON BUTTON VISIBLE
+    buttonGoOn.textContent = "Das wird schon, weiter..."; // <-- BTN
+    buttonGoOn.addEventListener('click', storyPart4);
+  } else {
+    paragraphText.innerHTML = "Du musst dich eifach gut fühlen, der Level deiner Lebensenergie ist doch bestens: " + character.energy + " Punkte. Bravo, weiter so!";
+    buttonGoOn.style.display = ""; //<----------------------------- GO ON BUTTON VISIBLE
+    buttonGoOn.textContent = "Genau, weiter!"; // <-- BTN
+    buttonGoOn.addEventListener('click', storyPart4);
+  }
+};
+function checkCharacter4() {
+  'use strict';
+  
+  var messageParagraph = document.getElementById("messageDiv");
+  messageParagraph.style.display = "none";
+  document.getElementById("message").innerHTML="bin jetzt in checkCharacter4";
+  
+  var headline = document.getElementById("headline");//<--------- get ID headline
+  var paragraphText = document.getElementById("textContent");//<- get ID textContent
+  var randomButton = document.getElementById("randomButton");//<- get ID randomButton
+  randomButton.style.display = "none"; //<----------------------- RANDOM BUTTON INVISIBLE
+  var select = document.getElementById("pullDown"); //<---------- get ID pullDown
+  select.style.display = "none"; //<----------------------------- PULL DOWN INVISIBLE
+  
+  getEnergyValue();/////////<------------------------------------ CALL BLOCK FOR
+  getDashboardValues();////<------------------------------------- CHECK & UPDATE VALUES
+  checkLive();////////////<-------------------------------------- MUST STAY TOGETHER
+  
+  var buttonGoOn = document.getElementById("goOnButton"); //<---- get ID goOnButton
+
+  headline.textContent = "Du kommst voran. Wie fühlst du dich?" ;
+  if (character.energy <= 1.4) {
+    paragraphText.innerHTML = "Ich kann es dir sagen, deine Lebensenergie beträgt: " + character.energy + " Punkte. Du kannst jetzt wählen, ob du sehen möchtest, ob du wirklich gestorben bist oder du startest die Story gleich von vorn mit dem RELOAD Schalter";
+    buttonGoOn.style.display = ""; //<----------------------------- GO ON BUTTON VISIBLE
+    buttonGoOn.textContent = "Ich bin stark, ich will's sehen."; // <-- BTN
+    buttonGoOn.addEventListener('click', goingToDie);
+  } else if (character.energy > 1.4 && character.energy < 4){
+    paragraphText.innerHTML = "Scheint so. Da bist du dem Tod wohl gerade so eben noch mal von der Schippe gesprungen. Deine Lebensenergie beträgt jetzt gerade mal: " + character.energy;
+    buttonGoOn.style.display = ""; //<----------------------------- GO ON BUTTON VISIBLE
+    buttonGoOn.textContent = "Das wird schon, weiter..."; // <-- BTN
+    buttonGoOn.addEventListener('click', theWinning);
+  } else {
+    paragraphText.innerHTML = "Du musst dich eifach gut fühlen, der Level deiner Lebensenergie ist doch bestens: " + character.energy + " Punkte. Bravo, weiter so!";
+    buttonGoOn.style.display = ""; //<----------------------------- GO ON BUTTON VISIBLE
+    buttonGoOn.textContent = "Genau, weiter!"; // <-- BTN
+    buttonGoOn.addEventListener('click', theWinning);
   }
 };
 
@@ -1183,6 +1353,8 @@ function storyPart2() {
   
   checkLive();
     
+  var messageParagraph = document.getElementById("messageDiv");
+  messageParagraph.style.display = "none";
   document.getElementById("message").innerHTML="bin jetzt in storyPart2";
   
   var randomButton = document.getElementById("randomButton");//<- get ID randomButton
@@ -1193,7 +1365,7 @@ function storyPart2() {
   var buttonGoOn = document.getElementById("goOnButton"); //<---- get ID goOnButton
   var background = document.getElementById('bodyImage'); //<----- get ID bodyImage
   background.style.backgroundImage = "url(img/zombie-945622_1920.jpg)"; //<-- SET BACKGROUND
-  buttonGoOn.style.display = ""; //<----------------------------- GO ON BUTTON VISIBLE
+  buttonGoOn.style.display = "none"; //<------------------------- GO ON BUTTON INVISIBLE
   buttonGoOn.textContent = "Weiter..."; // <-- BTN
   buttonGoOn.addEventListener('click', checkCharacter2);
 
@@ -1209,15 +1381,15 @@ function storyPart2() {
 
   ////////////////////////////////////////////////////// <--------- Empty Pull Down
   var select = document.getElementById("pullDown");
-  select.style.display = "none";
+  select.style.display = "";
   var length = select.options.length;
   for (var i = 0; i < length;) {
     select.options[i] = null;
     length = select.options.length;
   }
   //////////////////////////////////////////////////////<----------- Fill Pull Down
-  for (var i = 0; i < situationWeapons.length; i++) {
-    var option = situationWeapons[i];
+  for (var i = 0; i < situationWeapons1.length; i++) {
+    var option = situationWeapons1[i];
     var element = document.createElement("option");
     element.textContent = option;
     element.value = option;
@@ -1289,12 +1461,19 @@ function storyPart2() {
   }
   
 }
-
 function storyPart3() {
   'use strict';
   
   checkLive();
+  
+  ///  AUDIO START ///
+  aud.pause();
+  aud = new Audio('music/zombie_04.mp3');
+  aud.play();
+  ///  AUDIO END  ///
     
+  var messageParagraph = document.getElementById("messageDiv");
+  messageParagraph.style.display = "none";
   document.getElementById("message").innerHTML="bin jetzt in storyPart3";
   
   var randomButton = document.getElementById("randomButton");//<- get ID randomButton
@@ -1305,19 +1484,19 @@ function storyPart3() {
   var buttonGoOn = document.getElementById("goOnButton"); //<---- get ID goOnButton
   var background = document.getElementById('bodyImage'); //<----- get ID bodyImage
   background.style.backgroundImage = "url(img/The_Walking_Dead_TV_441686.jpg)"; //<-- SET BACKGROUND
-  buttonGoOn.style.display = ""; //<----------------------------- GO ON BUTTON VISIBLE
+  buttonGoOn.style.display = "none"; //<----------------------------- GO ON BUTTON VISIBLE
   buttonGoOn.textContent = "Weiter..."; // <-- BTN
   buttonGoOn.addEventListener('click', theEnd);
 
   headline.textContent = "Die Zombiedichte wird wieder größer." ;
-  paragraphText.innerHTML = character.name + " Dieses Mal musst du es mit einer ganzen Horde aufnehmen, was wirst du machen?";
+  paragraphText.innerHTML = character.name + " Dieses Mal musst du es mit einer ganzen Horde aufnehmen. Die Gegend hier schein recht unsicher zu sein. Zumindest ist sie für deine Gesundheit nicht gerade zuträglich. Was wirst du also tun, damit sich das ändert?";
   
   /*       SELECT OPTIONS BEGIN    ----->
   ================================================================================ */ 
 
   var weaponSelect = document.getElementById("pullDown"); // <----- get Pull Down
   weaponSelect.style.display = ""; //<----------------------------- PULL DOWN VISIBLE
-  weaponSelect.setAttribute("onchange", "checkCharacter()"); //<--- SetAttribute OnChange
+  weaponSelect.setAttribute("onchange", "checkCharacter3()"); //<--- SetAttribute OnChange
 
   ////////////////////////////////////////////////////// <--------- Empty Pull Down
   var select = document.getElementById("pullDown");
@@ -1327,8 +1506,8 @@ function storyPart3() {
     length = select.options.length;
   }
   //////////////////////////////////////////////////////<----------- Fill Pull Down
-  for (var i = 0; i < situationWeapons.length; i++) {
-    var option = situationWeapons[i];
+  for (var i = 0; i < situationWeapons2.length; i++) {
+    var option = situationWeapons2[i];
     var element = document.createElement("option");
     element.textContent = option;
     element.value = option;
@@ -1349,52 +1528,164 @@ function storyPart3() {
       if (element.selectedIndex === 0) {
         document.getElementById("attention1").innerHTML = "Du hast leider die falsche Wahl getroffen. Nämlich gar keine. Du wirst sehen, was du davon hast...";
           weaponSelect.removeEventListener('selected');
-          character.strength -= 5;
-          character.health += 5;
-          character.stealth += 5;
-          checkCharacter();
+          checkCharacter3();
       } else if (element.selectedIndex === 1) {
           weaponSelect.removeEventListener('selected');
-          //  1 = "Weglaufen"
-          character.strength += 4;
-          character.health += 4;
+          // 1 "Schnell einen einsameren Weg suchen.",
+          character.strength += 0;
+          character.health += 0;
           character.stealth += 2;
-          checkCharacter();
+          checkCharacter3();
       } else if (element.selectedIndex === 2) {
           weaponSelect.removeEventListener('selected');
-          //  2 = "Den Zombie mit bloßen Händen töten"
-          character.strength -= 6;
-          character.health -= 6;
-          character.stealth -= 6;
-          checkCharacter();
+          // 2 "Gegen die Zombies kämpfen, wie ein Held aus Grims Märchen",
+          character.strength -= 8;
+          character.health -= 8;
+          character.stealth -= 8;
+          checkCharacter3();
       } else if (element.selectedIndex === 3) {
           weaponSelect.removeEventListener('selected');
-          //  3 = "Mit der Gummiente vom Boden erschlagen."
-          character.strength -= 6;
-          character.health -= 8;
-          character.stealth -= 8;
-          checkCharacter();
+          // 3 "Ein schrilles Lied singen.",
+          character.strength -= 9;
+          character.health -= 9;
+          character.stealth -= 9;
+          checkCharacter3();
       } else if (element.selectedIndex === 4) {
           weaponSelect.removeEventListener('selected');
-          //  4 = "In den Hals beißen, bis der Zombie tot ist."
+          // 4 "Die Zombies versuchen zu hypnotisieren.",
           character.strength -= 8;
           character.health -= 8;
           character.stealth -= 8;
-          checkCharacter();
+          checkCharacter3();
       } else if (element.selectedIndex === 5) {
           weaponSelect.removeEventListener('selected');
-          //  5 = "Tot stellen"
+          // 5 "Ein Auto klauen, das Fahrerlos am Fahrbanrand steht.",
+          character.strength += 2;
+          character.health += 1;
+          character.stealth += 1;
+          checkCharacter3();
+      } else {
+          weaponSelect.removeEventListener('selected');
+          // 6 "In den nahe gelegenen Fluss springen und wegschwimmen.",
+          character.strength += 2;
+          character.health += 3;
+          character.stealth += 3;
+          checkCharacter3();
+      }
+    });
+  }
+  
+}
+function storyPart4() {
+  'use strict';
+  
+  checkLive();
+  
+  ///  AUDIO START ///
+  aud.pause();
+  aud = new Audio('music/zombie_05_long.mp3');
+  aud.play();
+  ///  AUDIO END  ///
+    
+  var messageParagraph = document.getElementById("messageDiv");
+  messageParagraph.style.display = "none";
+  document.getElementById("message").innerHTML="bin jetzt in storyPart4";
+  
+  var randomButton = document.getElementById("randomButton");//<- get ID randomButton
+  randomButton.style.display = "none"; //<----------------------- RANDOM BUTTON INVISIBLE
+  
+  var headline = document.getElementById("headline");//<--------- get ID headline
+  var paragraphText = document.getElementById("textContent");//<- get ID textContent
+  var buttonGoOn = document.getElementById("goOnButton"); //<---- get ID goOnButton
+  var background = document.getElementById('bodyImage'); //<----- get ID bodyImage
+  background.style.backgroundImage = "url(img/The_Walking_Dead_TV_441686.jpg)"; //<-- SET BACKGROUND
+  buttonGoOn.style.display = "none"; //<----------------------------- GO ON BUTTON VISIBLE
+  buttonGoOn.textContent = "Weiter..."; // <-- BTN
+  buttonGoOn.addEventListener('click', checkCharacter4);
+
+  headline.textContent = "Die Zombiedichte wird wieder größer." ;
+  paragraphText.innerHTML = character.name + " Dieses Mal musst du es mit einer ganzen Horde aufnehmen. Die Gegend hier schein recht unsicher zu sein. Zumindest ist sie für deine Gesundheit nicht gerade zuträglich. Was wirst du also tun, damit sich das ändert?";
+  
+  /*       SELECT OPTIONS BEGIN    ----->
+  ================================================================================ */ 
+
+  var weaponSelect = document.getElementById("pullDown"); // <----- get Pull Down
+  weaponSelect.style.display = ""; //<----------------------------- PULL DOWN VISIBLE
+  weaponSelect.setAttribute("onchange", "checkCharacter4()"); //<--- SetAttribute OnChange
+
+  ////////////////////////////////////////////////////// <--------- Empty Pull Down
+  var select = document.getElementById("pullDown");
+  var length = select.options.length;
+  for (var i = 0; i < length;) {
+    select.options[i] = null;
+    length = select.options.length;
+  }
+  //////////////////////////////////////////////////////<----------- Fill Pull Down
+  for (var i = 0; i < situationWeapons2.length; i++) {
+    var option = situationWeapons2[i];
+    var element = document.createElement("option");
+    element.textContent = option;
+    element.value = option;
+    weaponSelect.appendChild(element);
+    element = document.getElementById("pullDown");
+    selectedSitationWeapon = element.options[element.selectedIndex].value;
+  }
+  
+  /*       SELECT OPTIONS END    <-----
+  ================================================================================ */
+  
+  getEnergyInjection();
+
+  function getEnergyInjection() {
+    weaponSelect = document.getElementById("pullDown"); // <--- GET PULLDOWN
+    weaponSelect.addEventListener('selected', function(){
+      //  0 = Was tust du? Bitte wählen"
+      if (element.selectedIndex === 0) {
+        document.getElementById("attention1").innerHTML = "Du hast leider die falsche Wahl getroffen. Nämlich gar keine. Du wirst sehen, was du davon hast...";
+          weaponSelect.removeEventListener('selected');
+          checkCharacter4();
+      } else if (element.selectedIndex === 1) {
+          weaponSelect.removeEventListener('selected');
+          // 1 "Schnell einen einsameren Weg suchen.",
+          character.strength += 0;
+          character.health += 0;
+          character.stealth += 2;
+          checkCharacter4();
+      } else if (element.selectedIndex === 2) {
+          weaponSelect.removeEventListener('selected');
+          // 2 "Gegen die Zombies kämpfen, wie ein Held aus Grims Märchen",
           character.strength -= 8;
           character.health -= 8;
           character.stealth -= 8;
-          checkCharacter();
-      } else {
+          checkCharacter4();
+      } else if (element.selectedIndex === 3) {
           weaponSelect.removeEventListener('selected');
-          //  6 = "Weg schleichen"
+          // 3 "Ein schrilles Lied singen.",
+          character.strength -= 9;
+          character.health -= 9;
+          character.stealth -= 9;
+          checkCharacter4();
+      } else if (element.selectedIndex === 4) {
+          weaponSelect.removeEventListener('selected');
+          // 4 "Die Zombies versuchen zu hypnotisieren.",
+          character.strength -= 8;
+          character.health -= 8;
+          character.stealth -= 8;
+          checkCharacter4();
+      } else if (element.selectedIndex === 5) {
+          weaponSelect.removeEventListener('selected');
+          // 5 "Ein Auto klauen, das Fahrerlos am Fahrbanrand steht.",
           character.strength += 2;
           character.health += 1;
-          character.stealth += 2;
-          checkCharacter();
+          character.stealth += 1;
+          checkCharacter4();
+      } else {
+          weaponSelect.removeEventListener('selected');
+          // 6 "In den nahe gelegenen Fluss springen und wegschwimmen.",
+          character.strength += 2;
+          character.health += 3;
+          character.stealth += 3;
+          checkCharacter4();
       }
     });
   }
@@ -1402,8 +1693,49 @@ function storyPart3() {
 }
 
 
+function theWinning() {
+  'use strict';
+  
+  ///  AUDIO START ///
+  aud.pause();
+  aud = new Audio('music/zombie_06_lachen.mp3');
+  aud.play();
+  ///  AUDIO END  ///
+  
+  var background = document.getElementById('bodyImage'); //<----- get ID bodyImage
+  background.style.backgroundImage = "url(img/466006.jpg)"; //<-- SET BACKGROUND
+  var headline = document.getElementById("headline");
+  var paragraphText = document.getElementById("textContent");
+  var randomButton = document.getElementById("randomButton");
+  randomButton.style.display = "none"; // <-------- RANDOM BUTTON INVISIBLE
+  var select = document.getElementById("pullDown"); // <--- PULL DOWN ON
+  select.style.display = "none"; // <----------------- PULL DOWN INVISIBLE
+  var buttonGoOn = document.getElementById("goOnButton");
+  buttonGoOn.style.display = "none"; // <-----------------  GO ON BUTTON INVISIBLE
+  
+  headline.textContent = characterName + ", du hast gewonnen!" ;
+  paragraphText.innerHTML = "Ich glaube ein Freudentänzchen ist jetzt fällig, du hast das Spiel durchgestanden. Ok, das Spiel ja, aber um die alltäglichen Zombies da draußen, um die musst du dich nun allein kümmern. <br> <br>Viel Spaß dabei. ;-)";
+  
+  var messageParagraph = document.getElementById("messageDiv");
+  messageParagraph.style.display = "none";
+  document.getElementById("message").innerHTML="bin jetzt in the Winning";
+  
+  getEnergyValue();/////////<--CHECK & UPDATE VALUES
+  getDashboardValues();////<---CHECK & UPDATE VALUES
+  checkLive();////////////<----CHECK & UPDATE VALUES
+  
+  buttonGoOn.style.display = "none"; // <-----------------  GO ON BUTTON INVISIBLE
+  document.getElementById("reloadButton").style.display = ""; // <----- RELOAD BUTTON VISIBLE
+}
 function theEnd() {
   'use strict';
+  
+  ///  AUDIO START ///
+  aud.pause();
+  aud = new Audio('music/zombie_08_theend.mp3');
+  aud.play();
+  ///  AUDIO END  ///
+  
   var background = document.getElementById('bodyImage'); //<----- get ID bodyImage
   background.style.backgroundImage = "url(img/266598.jpg)"; //<-- SET BACKGROUND
   var headline = document.getElementById("headline");
@@ -1418,7 +1750,9 @@ function theEnd() {
   headline.textContent = "Hier ist das Ende" ;
   paragraphText.textContent = "Tut mir leid, " + characterName + ", wir sind hier vorerst am Ende der Reise. Wenn das Spiel weiter ausgebaut ist, gibt es auch mehr Teile der Geschichte.";
   
-  document.getElementById("message").innerHTML = character.characterClass;
+  var messageParagraph = document.getElementById("messageDiv");
+  messageParagraph.style.display = "none";
+  document.getElementById("message").innerHTML="bin jetzt in theEnd";
   
   getEnergyValue();/////////<--CHECK & UPDATE VALUES
   getDashboardValues();////<---CHECK & UPDATE VALUES
